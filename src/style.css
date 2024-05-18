@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'sidebar';
+    src: url('./fonts/Montserrat/static/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+/* Reset CSS */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Importance smooth */
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    display: grid;
+    grid-template-areas:  "sidebar content";
+    grid-template-columns: 1fr 4fr;
+}
+.sidebar{
+    grid-template-areas: sidebar;
+    background-color: rgba(131, 125, 125, 0.541);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0.5rem;
+    height:100vh;
+}
+
+.sidebar > button{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 50px;
+    width: 160px;
+    border:0;
+    background: 0;
+    color:rgb(255, 255, 255);
+    font-family: 'Sidebar';
+    font-size: 1rem;
+    padding: 1rem 0.5rem;
+}
+.sidebar > button:hover{
+    background-color: black;
+}
+button > img{
+    margin-right: 0.5rem;
+}
