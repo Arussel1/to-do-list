@@ -27,7 +27,7 @@ function taskTransform(task, options = {}) {
             project.style.backgroundColor = "var(--high-priority)";
             break;
     }
-    project.textContent = "# " + task.project;
+    project.textContent = task.project;
 
     date.classList.add("date");
     date.textContent = task.date;

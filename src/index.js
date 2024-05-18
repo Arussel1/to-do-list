@@ -6,6 +6,6 @@ import { compareAsc, format } from "date-fns";
 
 const sidebar = document.querySelector(".sidebar");
 const taskContainer = document.querySelector(".taskContainer")
-let taskArray = [new Task("Find internship","Prepare for next winter","#General",format(new Date(2014, 0, 11), "yyyy-MM-dd"),'low'),new Task("Find internship","Prepare for next winter","#General",format(new Date(2014, 0, 11), "yyyy-MM-dd"),'high')];
+let taskArray = [new Task("Find internship","Prepare for next winter",format(new Date(2014, 0, 11), "yyyy-MM-dd"),"#General",'low'),new Task("Find internship","Prepare for next winter",format(new Date(2014, 0, 11), "yyyy-MM-dd"),"#General",'high')];
 addImageAndTextToSidebar(sidebar);
 taskClasstoHTML(taskArray,taskContainer);
