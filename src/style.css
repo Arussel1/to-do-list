@@ -3,50 +3,96 @@
     src: url('./fonts/Montserrat/static/Montserrat-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
-  }
+}
+
+@font-face {
+    font-family: 'title';
+    src: url('./fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'task';
+    src: url('./fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
 /* Reset CSS */
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-/* Importance smooth */
+
+/* Smooth scroll behavior */
 html {
     scroll-behavior: smooth;
 }
+/*CSS var */
+:root{
+    --low-priority: rgba(28, 199, 28, 0.644);
+    --medium-priority: rgba(238, 158, 10, 0.651);
+    --high-priority: rgba(235, 57, 57, 0.753);
+}
 
-body{
+
+body {
     display: grid;
-    grid-template-areas:  "sidebar content";
+    grid-template-areas: "sidebar content";
     grid-template-columns: 200px 1fr;
 }
-.sidebar{
-    grid-template-areas: sidebar;
+
+/* Sidebar */
+.sidebar {
+    grid-area: sidebar;
     background-color: rgba(131, 125, 125, 0.541);
     display: flex;
     flex-direction: column;
     padding: 2rem 0.5rem;
-    height:100vh;
+    height: 100vh;
 }
 
-.sidebar > button{
+.sidebar > button {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: left;
     height: 50px;
     width: 160px;
-    border:0;
-    background: 0;
-    color:rgb(255, 255, 255);
-    font-family: 'Sidebar';
+    border: 0;
+    background: none;
+    color: rgb(255, 255, 255);
+    font-family: 'sidebar';
     font-size: 1rem;
     padding: 1rem 0.5rem;
 }
-.sidebar > button:hover{
+
+.sidebar > button:hover {
     background-color: black;
 }
-button > img{
+
+button > img {
     margin-right: 0.5rem;
+}
+
+/* Taskbox */
+.taskContainer {
+    padding: 2rem;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    border: 1px solid black;
+    font-family: 'task';
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-family: 'title';
+}
+.project{
+    background-color:var(--low-priority);
 }
