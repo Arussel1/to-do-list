@@ -101,12 +101,11 @@ button > img {
     background-color:var(--low-priority);
 }
 
-/* Add Task form */
+
+/* General dialog CSS */
 
 dialog{
     padding: 2rem;
-    height:60vh;
-    width:50vh;
     position: fixed;
     top: 40%;
     left: 50%;
@@ -117,6 +116,12 @@ dialog{
     font-size: 1rem;
   }
 
+/* Add Task form */
+
+.addTaskDialog{
+    height:60vh;
+    width:50vh;
+}
 form{
     display: flex;
     flex-direction: column;
@@ -138,4 +143,9 @@ form > textarea[name="description"]{
 form > button[type="submit"]{
     height: 25px;
     width:100px;
+}
+
+.addProjectDialog{
+    height:20vh;
+    width:30vh;
 }

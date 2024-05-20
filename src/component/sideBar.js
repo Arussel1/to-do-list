@@ -19,7 +19,7 @@ function createButton(imageSrc, textContent,className) {
     return button;
 }
 
-export default function addImageAndTextToSidebar(sidebar,projectArray) {
+export default function addImageAndTextToSidebar(sidebar,projectArray,addTaskDialog, addProjectDialog) {
     sidebar.innerHTML = "";
 
     const buttonsConfig = [
@@ -34,11 +34,20 @@ export default function addImageAndTextToSidebar(sidebar,projectArray) {
 
     buttonsConfig.forEach(config => {
         const button = createButton(config.imageSrc, config.textContent, config.className);
+        if (config.className == "addProject") {
+            button.addEventListener('click', () => {
+                addProjectDialog.showModal();
+            });
+        }else if (config.className == "addTask"){
+            button.addEventListener('click', () => {
+                addTaskDialog.showModal();
+            });
+        }
         sidebar.appendChild(button);
     });
 
     projectArray.forEach(projectName => {
-        const button = createButton(fileImage,projectName,null);
+        const button = createButton(fileImage,projectName,"myProjectName");
         sidebar.appendChild(button);
     })
 
