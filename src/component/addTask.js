@@ -1,12 +1,9 @@
-import Task from './taskConstructor.js';
+export default function addTask(projectList,dialog){
 
-export default function addTask(projectList){
-
-const dialog = document.createElement('dialog');
-dialog.className = 'formContainer';
-
-
+dialog.innerHTML = "";
 const form = document.createElement('form');
+form.name = "addTaskForm";
+const br = document.createElement('br');
 
 const titleLabel = document.createElement('label');
 titleLabel.setAttribute('for', 'title');
@@ -17,18 +14,17 @@ titleInput.setAttribute('name', 'title');
 titleInput.required = true;
 form.appendChild(titleLabel);
 form.appendChild(titleInput);
-form.appendChild(document.createElement('br'));
+form.appendChild(br);
 
 const descriptionLabel = document.createElement('label');
 descriptionLabel.setAttribute('for', 'description');
 descriptionLabel.textContent = 'Description:';
-const descriptionInput = document.createElement('input');
-descriptionInput.setAttribute('type', 'text');
-descriptionInput.setAttribute('name', 'description');
-descriptionInput.required = true;
+const descriptionTextarea = document.createElement('textarea');
+descriptionTextarea.setAttribute('name', 'description');
+descriptionTextarea.required = true;
 form.appendChild(descriptionLabel);
-form.appendChild(descriptionInput);
-form.appendChild(document.createElement('br'));
+form.appendChild(descriptionTextarea);
+form.appendChild(br);
 
 const dateLabel = document.createElement('label');
 dateLabel.setAttribute('for', 'date');
@@ -46,16 +42,34 @@ priorityLabel.setAttribute('for', 'priority');
 priorityLabel.textContent = 'Priority:';
 const prioritySelect = document.createElement('select');
 prioritySelect.setAttribute('name', 'priority');
-const options = ['low', 'medium', 'high'];
-options.forEach(optionValue => {
-    const option = document.createElement('option');
-    option.setAttribute('value', optionValue);
-    option.textContent = optionValue.charAt(0).toUpperCase() + optionValue.slice(1);
-    prioritySelect.appendChild(option);
+const priorityOptions = ['low', 'medium', 'high'];
+priorityOptions.forEach(optionValue => {
+    const priorityOption = document.createElement('option');
+    priorityOption.setAttribute('value', optionValue);
+    priorityOption.textContent = optionValue.charAt(0).toUpperCase() + optionValue.slice(1);
+    prioritySelect.appendChild(priorityOption);
 });
+
 form.appendChild(priorityLabel);
 form.appendChild(prioritySelect);
-form.appendChild(document.createElement('br'));
+form.appendChild(br);
+
+const projectLabel = document.createElement('label');
+projectLabel.setAttribute('for', 'project');
+projectLabel.textContent = 'Project:';
+const projectSelect = document.createElement('select');
+projectSelect.setAttribute('name', 'project');
+const projectOptions = projectList;
+projectOptions.forEach(optionValue => {
+    const projectOption = document.createElement('option');
+    projectOption.setAttribute('value', optionValue);
+    projectOption.textContent = optionValue.charAt(0).toUpperCase() + optionValue.slice(1);
+    projectSelect.appendChild(projectOption);
+});
+
+form.appendChild(projectLabel);
+form.appendChild(projectSelect);  // This line was missing
+form.appendChild(br);
 
 const submitButton = document.createElement('button');
 submitButton.setAttribute('type', 'submit');
@@ -65,5 +79,4 @@ form.appendChild(submitButton);
 
 dialog.appendChild(form);
 
-document.body.appendChild(dialog);
 }

@@ -56,7 +56,7 @@ function taskTransform(task, options = {}) {
     return taskDiv;
 }
 
-export default function (taskArray, taskContainer, options = {}) {
+export default function taskClasstoHTML(taskArray, taskContainer, options = {}) {
     taskContainer.innerHTML = "";
     for (const task of taskArray) {
         taskContainer.appendChild(taskTransform(task, options));

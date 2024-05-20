@@ -100,3 +100,42 @@ button > img {
 .project{
     background-color:var(--low-priority);
 }
+
+/* Add Task form */
+
+dialog{
+    padding: 2rem;
+    height:60vh;
+    width:50vh;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    font-family:'task';
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+form > *{
+    margin-bottom: 0.5rem;
+}
+
+form > input, form > select{
+    height: 25px;
+}
+form > textarea[name="description"]{
+    height:75px;
+    text-align:left;
+    vertical-align: top;
+    font-family: 'task';
+}
+
+form > button[type="submit"]{
+    height: 25px;
+    width:100px;
+}
