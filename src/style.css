@@ -75,6 +75,10 @@ button > img {
     margin-right: 0.5rem;
 }
 
+.myProject{
+    margin-top: 3rem;
+}
+
 /* Taskbox */
 .taskContainer {
     padding: 2rem;

@@ -8,6 +8,9 @@ function taskTransform(task, options = {}) {
     const date = document.createElement('p');
 
     taskCheckbox.type = "checkbox";
+    if(taskCheckbox.checked == true){
+        taskDiv.style.textDecoration = "lineThrough";
+    }
 
     title.classList.add("title");
     title.textContent = task.title;
@@ -38,6 +41,14 @@ function taskTransform(task, options = {}) {
     taskDiv.appendChild(project);
     taskDiv.appendChild(date);
 
+    taskCheckbox.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            taskDiv.style.textDecoration = "line-through";
+        } else {
+            taskDiv.style.textDecoration = "none";
+        }
+    });
+    
     if (options.customizeTaskDiv) {
         options.customizeTaskDiv(taskDiv);
     }
