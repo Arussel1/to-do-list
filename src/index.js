@@ -39,7 +39,7 @@ function loadFromLocalStorage() {
 
     taskArray = loadedTasks.map(taskProps => {
         if (Array.isArray(taskProps)) {
-            return new Task(taskProps[0], taskProps[1], taskProps[2], taskProps[3], taskProps[4]); // Manual array element access
+            return new Task(...taskProps);
         } else {
             console.error('Task properties are not an array:', taskProps);
             return null;
