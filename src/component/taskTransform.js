@@ -52,6 +52,33 @@ export default function taskTransform(task, options = {}) {
     if (options.customizeTaskDiv) {
         options.customizeTaskDiv(taskDiv);
     }
+    
+    taskDiv.appendChild(createDeleteButton());
+    taskDiv.appendChild(createEditButton());;
+
+
 
     return taskDiv;
+}
+
+function updateTaskDisplay(taskArray, taskContainer) {
+    taskContainer.innerHTML = '';
+    taskArray.forEach(task => {
+        const taskElement = taskTransform(task);
+        taskContainer.appendChild(taskElement);
+    });
+}
+
+function createDeleteButton() {
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('deleteButton');
+    deleteButton.textContent = 'Delete';
+    return deleteButton;
+}
+
+function createEditButton() {
+    const editButton = document.createElement('button');
+    editButton.classList.add("editButton");
+    editButton.textContent = 'Edit';
+    return editButton;
 }

@@ -5,7 +5,7 @@ export default class Task {
         this._date = date;
         this._project = project;
         this._priority = priority;
-    }
+    }   
 
     get title() {
         return this._title;

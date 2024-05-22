@@ -17,7 +17,8 @@ export default function addProject(dialog) {
     form.appendChild(br);
 
     const submitButton = document.createElement('button');
-    submitButton.setAttribute('type', 'submit');
+    submitButton.classList.add("addProjectSubmitButton");
+    submitButton.setAttribute('type', 'button');
     submitButton.setAttribute('autofocus', true);
     submitButton.textContent = 'Submit';
     form.appendChild(submitButton);

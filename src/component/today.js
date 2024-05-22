@@ -1,9 +1,12 @@
-import taskTransform from './taskTransform.js'
+import { format } from "date-fns";
+import taskTransform from './taskTransform.js';
+
 export default function today(taskArray, taskContainer, options = {}) {
-    const today = format(new Date(),"yyyy-MM-dd");
+    const today = format(new Date(), "yyyy-MM-dd");
     taskContainer.innerHTML = "";
     for (const task of taskArray) {
-        if(task.date == today)
-        taskContainer.appendChild(taskTransform(task, options));
+        if (task.date === today) {
+            taskContainer.appendChild(taskTransform(task, options));
+        }
     }
 }

@@ -52,7 +52,7 @@ body {
     height: 100vh;
 }
 
-.sidebar > button {
+.sidebar > div > button {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -67,7 +67,7 @@ body {
     padding: 1rem 0.5rem;
 }
 
-.sidebar > button:hover {
+.sidebar > div > button:hover {
     background-color: black;
 }
 
@@ -101,6 +101,10 @@ button > img {
     background-color:var(--low-priority);
 }
 
+.task > button{
+    height: 25px;
+    width: 10%;
+}
 
 /* General dialog CSS */
 
@@ -140,7 +144,7 @@ form > textarea[name="description"]{
     font-family: 'task';
 }
 
-form > button[type="submit"]{
+form > button[type="button"]{
     height: 25px;
     width:100px;
 }

@@ -5,23 +5,13 @@ import overdueImage from '../images/overdue.svg';
 import projectImage from '../images/project.svg';
 import todayImage from '../images/today.svg';
 import fileImage from '../images/file.svg';
+import createButton from'./createButton.js'
+import addProject from './addProject.js';
 
-// Function to create a button with image and text
-function createButton(imageSrc, textContent,className) {
-    const button = document.createElement('button');
-    const img = document.createElement('img');
-    const text = document.createElement('p');
-    img.src = imageSrc;
-    text.textContent = textContent;
-    button.classList.add(className);
-    button.appendChild(img);
-    button.appendChild(text);
-    return button;
-}
-
-export default function addImageAndTextToSidebar(sidebar,projectArray,addTaskDialog, addProjectDialog) {
+export default function addImageAndTextToSidebar(sidebar,projectArray) {
     sidebar.innerHTML = "";
-
+    const taskSidebar = document.createElement("div");
+    taskSidebar.classList.add("taskSideBar");
     const buttonsConfig = [
         { imageSrc: AllImage, textContent: "All Task", className: "allTask" },
         { imageSrc: AddImage, textContent: "Add Task", className: "addTask" },
@@ -34,22 +24,20 @@ export default function addImageAndTextToSidebar(sidebar,projectArray,addTaskDia
 
     buttonsConfig.forEach(config => {
         const button = createButton(config.imageSrc, config.textContent, config.className);
-        if (config.className == "addProject") {
-            button.addEventListener('click', () => {
-                addProjectDialog.showModal();
-            });
-        }else if (config.className == "addTask"){
-            button.addEventListener('click', () => {
-                addTaskDialog.showModal();
-            });
-        }
-        sidebar.appendChild(button);
+        taskSidebar.appendChild(button);
     });
+    sidebar.appendChild(taskSidebar);
 
+    sidebar.appendChild(projectSideBar(projectArray));
+    
+}
+function projectSideBar(projectArray){
+    const projectSidebar = document.createElement("div");
+    projectSidebar.classList.add("projectSidebar")
     projectArray.forEach(projectName => {
         const button = createButton(fileImage,projectName,"myProjectName");
-        sidebar.appendChild(button);
-    })
-
-    
+        button.id = projectName;
+        projectSidebar.appendChild(button);
+    });
+    return projectSidebar;
 }
