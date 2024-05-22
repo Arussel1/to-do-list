@@ -30,14 +30,27 @@ function saveToLocalStorage() {
 
 
 function loadFromLocalStorage() {
-    const loadedTasks = JSON.parse(localStorage.getItem('taskArray')) || [];
+    let loadedTasks = JSON.parse(localStorage.getItem('taskArray'));
     const loadedProjects = JSON.parse(localStorage.getItem('projectArray')) || ["General"];
 
-    taskArray = loadedTasks.map(taskProps => new Task(...taskProps));
+    if (!Array.isArray(loadedTasks)) {
+        loadedTasks = [];
+    }
+
+    taskArray = loadedTasks.map(taskProps => {
+        if (Array.isArray(taskProps)) {
+            return new Task(taskProps[0], taskProps[1], taskProps[2], taskProps[3], taskProps[4]); // Manual array element access
+        } else {
+            console.error('Task properties are not an array:', taskProps);
+            return null;
+        }
+    }).filter(task => task !== null);
+    
+
     projectArray = loadedProjects;
 }
 
-loadFromLocalStorage();
+document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
 
 addImageAndTextToSidebar(sidebar, projectArray);
 taskClasstoHTML(taskArray, taskContainer);
