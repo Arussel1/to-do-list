@@ -50,8 +50,7 @@ function loadFromLocalStorage() {
     projectArray = loadedProjects;
 }
 
-document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
-
+loadFromLocalStorage();
 addImageAndTextToSidebar(sidebar, projectArray);
 taskClasstoHTML(taskArray, taskContainer);
 addTask(projectArray, addTaskDialog);
@@ -211,4 +210,3 @@ addProjectSubmitButton.addEventListener("click", function(event) {
 deleteButtonEventListener();
 setDataIndexForTask();
 editButtonEventListener();
-saveToLocalStorage();
