@@ -13,32 +13,31 @@ import File from './images/file.svg';
 import { format } from "date-fns";
 import updateTask from './component/updateTask.js';
 
-function saveToLocalStorage() {
-    localStorage.setItem('taskArray', JSON.stringify(taskArray));
-    localStorage.setItem('projectArray', JSON.stringify(projectArray));
-}
-
-function loadFromLocalStorage() {
-    const loadedTasks = JSON.parse(localStorage.getItem('taskArray'));
-    const loadedProjects = JSON.parse(localStorage.getItem('projectArray'));
-    if (loadedTasks) {
-        taskArray = loadedTasks.map(task => new Task(task.title, task.description, task.date, task.project, task.priority));
-    }
-    if (loadedProjects) {
-        projectArray = loadedProjects;
-    }
-}
-
 const sidebar = document.querySelector(".sidebar");
 const taskContainer = document.querySelector(".taskContainer");
 const addTaskDialog = document.querySelector('.addTaskDialog');
 const addProjectDialog = document.querySelector('.addProjectDialog');
 const updateTaskDialog = document.querySelector(".updateTaskDialog");
 
-const taskArray = [
-    new Task("Find internship", "Prepare for next winter", format(new Date(2014, 0, 11), "yyyy-MM-dd"), "General", 'high')
-];
-const projectArray = ["General"];
+let taskArray = [];
+let projectArray = [];
+
+function saveToLocalStorage() {
+    const taskArrayToSave = taskArray.map(task => [task.title, task.description, task.date, task.project, task.priority]);
+    localStorage.setItem('taskArray', JSON.stringify(taskArrayToSave));
+    localStorage.setItem('projectArray', JSON.stringify(projectArray));
+}
+
+
+function loadFromLocalStorage() {
+    const loadedTasks = JSON.parse(localStorage.getItem('taskArray')) || [];
+    const loadedProjects = JSON.parse(localStorage.getItem('projectArray')) || ["General"];
+
+    taskArray = loadedTasks.map(taskProps => new Task(...taskProps));
+    projectArray = loadedProjects;
+}
+
+loadFromLocalStorage();
 
 addImageAndTextToSidebar(sidebar, projectArray);
 taskClasstoHTML(taskArray, taskContainer);
@@ -62,6 +61,7 @@ function deleteButtonEventListener() {
             setDataIndexForTask();
             deleteButtonEventListener();
             editButtonEventListener();
+            saveToLocalStorage();
         });
     });
 }
@@ -93,6 +93,7 @@ function editButtonEventListener() {
                     setDataIndexForTask();
                     deleteButtonEventListener();
                     editButtonEventListener();
+                    saveToLocalStorage();
                 } else {
                     updateTaskForm.reportValidity();
                 }
@@ -161,7 +162,7 @@ addTaskSubmitButton.addEventListener("click", function(event) {
         setDataIndexForTask();
         editButtonEventListener();
         deleteButtonEventListener();
-        
+        saveToLocalStorage();
     } else {
         addTaskForm.reportValidity();
     }
@@ -188,6 +189,7 @@ addProjectSubmitButton.addEventListener("click", function(event) {
         }
         addProjectDialog.close();
         addProjectForm.reset();
+        saveToLocalStorage();
     } else {
         addProjectForm.reportValidity();
     }
@@ -196,3 +198,4 @@ addProjectSubmitButton.addEventListener("click", function(event) {
 deleteButtonEventListener();
 setDataIndexForTask();
 editButtonEventListener();
+saveToLocalStorage();
