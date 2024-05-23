@@ -61,13 +61,6 @@ export default function taskTransform(task, options = {}) {
     return taskDiv;
 }
 
-function updateTaskDisplay(taskArray, taskContainer) {
-    taskContainer.innerHTML = '';
-    taskArray.forEach(task => {
-        const taskElement = taskTransform(task);
-        taskContainer.appendChild(taskElement);
-    });
-}
 
 function createDeleteButton() {
     const deleteButton = document.createElement('button');

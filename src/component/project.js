@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import taskTransform from './taskTransform.js';
 
 export default function project(taskArray, taskContainer, id, options = {}) {

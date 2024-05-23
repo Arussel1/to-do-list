@@ -1,4 +1,4 @@
-import { format, addDays, isWithinInterval } from "date-fns";
+import { addDays, isWithinInterval } from "date-fns";
 import taskTransform from './taskTransform.js';
 
 export default function nextWeek(taskArray, taskContainer, options = {}) {

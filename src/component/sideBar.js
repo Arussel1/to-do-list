@@ -6,7 +6,6 @@ import projectImage from '../images/project.svg';
 import todayImage from '../images/today.svg';
 import fileImage from '../images/file.svg';
 import createButton from'./createButton.js'
-import addProject from './addProject.js';
 
 export default function addImageAndTextToSidebar(sidebar,projectArray) {
     sidebar.innerHTML = "";
